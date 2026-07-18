@@ -15,11 +15,13 @@ const DAY_FMT = new Intl.DateTimeFormat("en-US", {
   weekday: "long",
   day: "numeric",
   month: "long",
+  year: "numeric",
 });
 const SHORT_FMT = new Intl.DateTimeFormat("en-US", {
   weekday: "short",
   day: "numeric",
   month: "short",
+  year: "numeric",
 });
 
 export function PremarketPanel({

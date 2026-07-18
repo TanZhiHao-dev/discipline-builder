@@ -81,6 +81,7 @@ const DAY_FMT = new Intl.DateTimeFormat("en-US", {
   weekday: "short",
   day: "numeric",
   month: "short",
+  year: "numeric",
 });
 
 export function JournalView({

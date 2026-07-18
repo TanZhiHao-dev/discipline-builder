@@ -383,6 +383,7 @@ const COPY_FMT = new Intl.DateTimeFormat("en-US", {
   weekday: "short",
   day: "numeric",
   month: "short",
+  year: "numeric",
 });
 
 // Dropdown to prefill the form from a past analysis — same-asset ones are
