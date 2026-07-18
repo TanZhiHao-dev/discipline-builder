@@ -1,0 +1,21 @@
+CREATE TABLE `trade_journal` (
+	`id` text PRIMARY KEY NOT NULL,
+	`user_id` text NOT NULL,
+	`asset` text NOT NULL,
+	`mode` text DEFAULT 'live' NOT NULL,
+	`method` text DEFAULT '' NOT NULL,
+	`top_down_analysis` text DEFAULT '' NOT NULL,
+	`daily_bias` text DEFAULT 'Neutral' NOT NULL,
+	`market_structure` text DEFAULT '' NOT NULL,
+	`quarterly_theory` text DEFAULT '' NOT NULL,
+	`pd_array` text DEFAULT '' NOT NULL,
+	`entry_price` real,
+	`stop_loss` real,
+	`take_profit` real,
+	`status` text DEFAULT 'Running' NOT NULL,
+	`result_r` real,
+	`result_r_manual` integer DEFAULT false NOT NULL,
+	`notes` text DEFAULT '' NOT NULL,
+	`created_at` integer NOT NULL,
+	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
+);

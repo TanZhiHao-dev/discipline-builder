@@ -1,0 +1,1 @@
+ALTER TABLE `trade_journal` ADD `date` text;

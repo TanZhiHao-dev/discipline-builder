@@ -1,26 +1,215 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-headline: var(--font-headline);
+
+  /* Template brand palette (Habitline by Webestica) */
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-brand: var(--brand);
+  --color-brand-green: var(--brand-green);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-blue: var(--brand-blue);
+
+  /* Trading terminal tokens (ported from trading-sop) */
+  --color-bull: var(--bull);
+  --color-bear: var(--bear);
+  --color-warn: var(--warn);
+
+  /* Semantic + pastel category tokens */
+  --color-streak: var(--streak);
+  --color-done: var(--done);
+  --color-miss: var(--miss);
+  --color-cat-lavender: var(--cat-lavender);
+  --color-cat-pink: var(--cat-pink);
+  --color-cat-green: var(--cat-green);
+  --color-cat-blue: var(--cat-blue);
+  --color-cat-amber: var(--cat-amber);
+  --color-cat-teal: var(--cat-teal);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 16px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Habitline — light theme matched to the Webestica template palette */
+:root {
+  --radius: 0.9rem;
+  --background: #ffffff;
+  --foreground: #131515;
+  --card: #ffffff;
+  --card-foreground: #131515;
+  --popover: #ffffff;
+  --popover-foreground: #131515;
+  --primary: #ff4c00;
+  --primary-foreground: #ffffff;
+  --secondary: #f7f7f7;
+  --secondary-foreground: #131515;
+  --muted: #f7f7f7;
+  --muted-foreground: #494d4d;
+  --accent: #f2f2f0;
+  --accent-foreground: #131515;
+  --destructive: oklch(0.62 0.21 22);
+  --border: #e8e8e8;
+  --input: #e8e8e8;
+  --ring: #ff4c00;
+
+  /* Template brand palette */
+  --ink: #131515;
+  --paper: #f7f7f7;
+  --brand: #ff4c00;
+  --brand-green: #12a70a;
+  --brand-purple: #9000ff;
+  --brand-blue: #0022ff;
+
+  --bull: oklch(0.6 0.16 150);
+  --bear: oklch(0.58 0.22 22);
+  --warn: oklch(0.7 0.15 70);
+
+  --streak: #ff4c00;
+  --done: #12a70a;
+  --miss: oklch(0.62 0.2 22);
+  --cat-lavender: oklch(0.62 0.15 292);
+  --cat-pink: oklch(0.68 0.16 8);
+  --cat-green: #12a70a;
+  --cat-blue: oklch(0.6 0.14 242);
+  --cat-amber: oklch(0.74 0.15 72);
+  --cat-teal: oklch(0.66 0.1 196);
+}
+
+/* Dark palette (bonus — the app greeting header always renders dark via .dark) */
+.dark {
+  --background: #131515;
+  --foreground: #f7f7f7;
+  --card: #1d1f1f;
+  --card-foreground: #f7f7f7;
+  --popover: #1d1f1f;
+  --popover-foreground: #f7f7f7;
+  --primary: #ff4c00;
+  --primary-foreground: #ffffff;
+  --secondary: #252828;
+  --secondary-foreground: #f7f7f7;
+  --muted: #222525;
+  --muted-foreground: #b8b8b8;
+  --accent: #2a2d2d;
+  --accent-foreground: #f7f7f7;
+  --destructive: oklch(0.66 0.2 22);
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 14%);
+  --ring: #ff4c00;
+  --streak: #ff6a2b;
+  --done: #2fc11f;
+  --miss: oklch(0.68 0.19 22);
+  --bull: oklch(0.72 0.17 152);
+  --bear: oklch(0.66 0.2 20);
+  --warn: oklch(0.79 0.14 78);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+  .mono-nums {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklch, var(--foreground) 18%, transparent)
+      transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: color-mix(in oklch, var(--foreground) 16%, transparent);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  /* Scroll-reveal for the landing page */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+  /* Headline display face */
+  .font-headline {
+    font-family: var(--font-headline), var(--font-sans), sans-serif;
+    letter-spacing: -0.02em;
+  }
+  /* Infinite marquees for ticker rows / photo columns */
+  .marquee-x {
+    animation: marquee-x var(--marquee-duration, 30s) linear infinite;
+  }
+  .marquee-y {
+    animation: marquee-y var(--marquee-duration, 30s) linear infinite;
+  }
+  .marquee-reverse {
+    animation-direction: reverse;
+  }
+}
+
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
 }
