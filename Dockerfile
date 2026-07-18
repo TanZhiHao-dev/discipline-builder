@@ -23,6 +23,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
+# Cap the build's heap so a constrained/shared host (small VPS) can't OOM —
+# Node spills to swap instead of the kernel killing neighbouring containers.
+ENV NODE_OPTIONS=--max-old-space-size=1536
 RUN npm run build
 
 FROM node:24-bookworm-slim AS prod-deps
