@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { AutoTextarea } from "@/components/journal/AutoTextarea";
 import { saveTrade } from "@/server/journal";
 import {
   ASSET_KEYS,
@@ -716,12 +717,10 @@ export function TradeForm({
               onAdd={(files) => addImages("notes", files)}
               onRemove={(i) => removeImage("notes", i)}
             >
-              <textarea
+              <AutoTextarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                rows={2}
                 placeholder="Execution, emotions, lessons…"
-                className="w-full resize-y rounded-lg border border-border bg-transparent px-3 py-2 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-ring"
               />
             </ImageZone>
             <Reminders step={7} />

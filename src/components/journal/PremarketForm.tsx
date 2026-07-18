@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { AutoTextarea } from "@/components/journal/AutoTextarea";
 import { savePremarket, deletePremarket } from "@/server/premarket";
 import { ASSET_KEYS, ASSETS, BIAS, SOP_STEPS, biasClasses, type AssetKey } from "@/lib/trade";
 import { blobToCompressedDataUrl, imagesFromDataTransfer } from "@/lib/image";
@@ -320,12 +321,10 @@ export function PremarketForm({
                 onAdd={(f) => addImages(s.key, f)}
                 onRemove={(i) => removeImage(s.key, i)}
               >
-                <textarea
+                <AutoTextarea
                   value={sopValues[s.key]}
                   onChange={(e) => sopSetters[s.key](e.target.value)}
-                  rows={2}
                   placeholder={s.hint}
-                  className="w-full resize-y rounded-lg border border-border bg-transparent px-3 py-2 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-ring"
                 />
               </ImageZone>
               <Reminders step={s.n} />
@@ -339,12 +338,10 @@ export function PremarketForm({
               onAdd={(f) => addImages("notes", f)}
               onRemove={(i) => removeImage("notes", i)}
             >
-              <textarea
+              <AutoTextarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                rows={2}
                 placeholder="Plan for the day, key levels, what would invalidate the bias…"
-                className="w-full resize-y rounded-lg border border-border bg-transparent px-3 py-2 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-ring"
               />
             </ImageZone>
           </Field>
