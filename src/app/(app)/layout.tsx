@@ -2,6 +2,7 @@ import { requireUser } from "@/lib/session";
 import { AppNav } from "@/components/AppNav";
 import { ToolsHost } from "@/components/ToolsHost";
 import { CommandPalette } from "@/components/CommandPalette";
+import { TopProgress } from "@/components/TopProgress";
 
 export default async function AppLayout({
   children,
@@ -13,6 +14,7 @@ export default async function AppLayout({
 
   return (
     <div className="flex min-h-screen flex-col">
+      <TopProgress />
       <AppNav name={firstName} />
       <main className="flex-1">{children}</main>
       {/* Trading tools + Cmd/Ctrl+K palette, available app-wide */}
